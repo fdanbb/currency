@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 import requests
 
 koronaLiraUrl = 'https://koronapay.com/transfers/online/api/transfers/tariffs?receivingAmount=1000&alternatives=false&sendingCurrencyId=810&receivingCurrencyId=949&sendingCountryId=RUS&receivingCountryId=TUR&receivingMethod=cash&paymentMethod=debitCard'
@@ -9,14 +11,14 @@ headers = {
 
 def getLiraPrice():
     response = requests.get(koronaLiraUrl, headers=headers)
-    return response.json()[0].get("exchangeRate")
+    return round((Decimal(response.json()[0].get("exchangeRate"))), 2)
 
 
 def getUsdPrice():
     response = requests.get(koronaUsdUrl, headers=headers)
-    return response.json()[0].get("exchangeRate")
+    return round((Decimal(response.json()[0].get("exchangeRate"))), 2)
 
 
 def getEuroPrice():
     response = requests.get(koronaEuroUrl, headers=headers)
-    return response.json()[0].get("exchangeRate")
+    return round((Decimal(response.json()[0].get("exchangeRate"))), 2)

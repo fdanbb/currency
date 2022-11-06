@@ -16,7 +16,7 @@ def getLiraPrice():
         if valute.items()[0][1] == 'R01700J':
             nominal = valute.find('Nominal').text
             value = valute.find('Value').text
-            return Decimal(value.replace(',', '.')) / int(nominal)
+            return round((Decimal(value.replace(',', '.'))) / int(nominal), 2)
 
 
 def getUsdPrice():
@@ -27,7 +27,7 @@ def getUsdPrice():
         if valute.items()[0][1] == 'R01235':
             nominal = valute.find('Nominal').text
             value = valute.find('Value').text
-            return Decimal(value.replace(',', '.')) / int(nominal)
+            return round((Decimal(value.replace(',', '.')) / int(nominal)), 2)
 
 
 def getEuroPrice():
@@ -38,4 +38,4 @@ def getEuroPrice():
         if valute.items()[0][1] == 'R01239':
             nominal = valute.find('Nominal').text
             value = valute.find('Value').text
-            return Decimal(value.replace(',', '.')) / int(nominal)
+            return round((Decimal(value.replace(',', '.')) / int(nominal)), 2)
